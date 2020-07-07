@@ -1,0 +1,48 @@
+.overlay-text {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #FF6D00;
+    font-family: Creepy, serif;
+    transition: background-color 500ms, font-size 500ms;
+}
+
+.overlay-text.visible {
+    display: flex;
+    animation: overlay-grow 1000ms forwards;
+}
+
+.page-title {
+    color: #FF6D00;
+    font-family: Creepy, serif;
+    font-weight: normal;
+    text-align: center;
+    font-size: 6em;
+}
+
+.page-title-small {
+    font-size: 3em;
+}
+
+.button {
+    padding: 1em;
+    background: transparent;
+    color: #FF6D00;
+    font-family: Creepy, serif;
+    font-weight: normal;
+    font-size: 1.8em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    animation: dance 500ms infinite;
+}
