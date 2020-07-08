@@ -14,7 +14,9 @@ function App() {
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [start, setStart] = useState(false);
-  const [time, setTime] = useState(100);
+  const [restart, setRestart] = useState(false);
+  const [time, setTime] = useState(5);
+  const [flip, setFlip] = useState(0);
 
   useEffect(() => {
     setCards(initialCards());
@@ -39,7 +41,15 @@ function App() {
   }, [time]);
 
   const handleStartClick = () => {
-    setStart(true)
+    setStart(true);
+  }
+
+  const handleRestartClick = () => {
+    setCards(initialCards());
+    setSolved([]);
+    setRestart(true);
+    setTime(5);
+    setFlip(0);
   }
 
   const handleClick = id => {
@@ -48,6 +58,7 @@ function App() {
       setFlipped([id]);
       setDisabled(false);
     } else {
+      setFlip(flip => flip + 1)
       if (sameCardClicked(id)) return
       setFlipped([flipped[0], id])
       if (isMatch(id)) {
@@ -90,12 +101,13 @@ function App() {
         disabled={disabled} 
         solved={solved} 
         time={time}
+        flip={flip}
         handleClick={handleClick} 
         /> :
         <StartGame handleStartClick={handleStartClick}/>
       }
       {
-        time === 0 && <EndGame handleStartClick={handleStartClick} />
+        (time === 0 || cards.length === solved?.length) && <EndGame cards={cards} solved={solved} restart={restart} time={time} handleRestartClick={handleRestartClick} />
       }
     </>
   )
