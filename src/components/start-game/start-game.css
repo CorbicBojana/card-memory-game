@@ -31,6 +31,24 @@
     font-size: 3em;
 }
 
+.select {
+    width: 40%;
+    padding: 0.8rem 1.6rem;
+    color: #333;
+    background-color: #FFBB89;
+    border: 4px solid #333;
+    border-radius: 10px;
+    color: #333;
+    font-family: Creepy, serif;
+    font-weight: normal;
+    font-size: 1em;
+    animation: fade-out 1000ms forwards;
+}
+
+.select-option {
+    cursor: pointer;
+}
+
 .button {
     padding: 1em;
     background: transparent;

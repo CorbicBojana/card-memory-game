@@ -6,7 +6,7 @@ import StartGame from "./components/start-game";
 import Board from "./components/board";
 import EndGame from "./components/end-game";
 
-import initialCards from "./initialCards";
+import { initialCards, initialCardsMedium, initialCardsHard } from "./initialCards";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -15,20 +15,30 @@ function App() {
   const [disabled, setDisabled] = useState(false);
   const [start, setStart] = useState(false);
   const [restart, setRestart] = useState(false);
-  const [time, setTime] = useState(5);
+  const [time, setTime] = useState(100);
   const [flip, setFlip] = useState(0);
+  const [gameLevel, setGameLevel] = useState("easy");
 
   useEffect(() => {
     setCards(initialCards());
-  },[]);
+    if (gameLevel === "medium") {
+      setCards(initialCardsMedium())
+    }
+    if (gameLevel === "hard") {
+      setCards(initialCardsHard())
+    }
+  },[gameLevel]);
 
   useEffect(() => {
     preloadImages()
   }, [cards]);
 
   useEffect(() => {
+    if(!start) return
+
     let interval = null;
     
+    if(interval) return false
     interval = setInterval(() => {
         setTime(time => time - 1);
     }, 1000);
@@ -38,7 +48,12 @@ function App() {
     }
 
     return () => clearInterval(interval);
-  }, [time]);
+  }, [start, time]);
+
+  const handleChange = e => {
+    const level = e.target.value;
+    setGameLevel(level);
+  }
 
   const handleStartClick = () => {
     setStart(true);
@@ -48,7 +63,7 @@ function App() {
     setCards(initialCards());
     setSolved([]);
     setRestart(true);
-    setTime(5);
+    setTime(100);
     setFlip(0);
   }
 
@@ -104,7 +119,9 @@ function App() {
         flip={flip}
         handleClick={handleClick} 
         /> :
-        <StartGame handleStartClick={handleStartClick}/>
+        <StartGame
+        handleChange={handleChange} 
+        handleStartClick={handleStartClick}/>
       }
       {
         (time === 0 || cards.length === solved?.length) && <EndGame cards={cards} solved={solved} restart={restart} time={time} handleRestartClick={handleRestartClick} />

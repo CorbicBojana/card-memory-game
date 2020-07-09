@@ -10,7 +10,7 @@ function shuffle(array) {
     return _array
 }
 
-export default function() {
+export function initialCards() {
     let id = 0;
     const cards = [
         "mickey-mouse",
@@ -21,6 +21,61 @@ export default function() {
         "pluto",
         "jasmine",
         "pocahontas"
+    ].reduce((acc, type) => {
+        acc.push({
+            id: id++,
+            type
+        })
+        acc.push({
+            id: id++,
+            type
+        })
+        return acc
+    }, [])
+
+    return shuffle(cards)
+}
+
+export function initialCardsMedium() {
+    let id = 0;
+    const cards = [
+        "mickey-mouse",
+        "minnie-mouse",
+        "donald-duck",
+        "winnie-the-pooh",
+        "maleficent",
+        "pluto",
+        "jasmine",
+        "pocahontas",
+        "maleficent"
+    ].reduce((acc, type) => {
+        acc.push({
+            id: id++,
+            type
+        })
+        acc.push({
+            id: id++,
+            type
+        })
+        return acc
+    }, [])
+
+    return shuffle(cards)
+}
+
+export function initialCardsHard() {
+    let id = 0;
+    const cards = [
+        "mickey-mouse",
+        "minnie-mouse",
+        "donald-duck",
+        "winnie-the-pooh",
+        "maleficent",
+        "pluto",
+        "jasmine",
+        "pocahontas",
+        "pluto",
+        "jasmine"
     ].reduce((acc, type) => {
         acc.push({
             id: id++,
