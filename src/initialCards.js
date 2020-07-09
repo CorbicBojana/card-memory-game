@@ -47,7 +47,8 @@ export function initialCardsMedium() {
         "pluto",
         "jasmine",
         "pocahontas",
-        "maleficent"
+        "belle",
+        "ariel"
     ].reduce((acc, type) => {
         acc.push({
             id: id++,
@@ -74,8 +75,10 @@ export function initialCardsHard() {
         "pluto",
         "jasmine",
         "pocahontas",
-        "pluto",
-        "jasmine"
+        "belle",
+        "ariel",
+        "prince-eric",
+        "captain-john-smith"
     ].reduce((acc, type) => {
         acc.push({
             id: id++,
